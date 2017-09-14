@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src=":/qtwebchannel/qwebchannel.js"></script>
+        <script>
+            window.onload = function() {
+                new QWebChannel(qt.webChannelTransport, function(channel) {
+                    window.listener = channel.objects.listener;
+                    window.listener.handle_message();
+                });
+            }
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

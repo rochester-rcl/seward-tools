@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://ns.saxonica.com/xslt/export" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vv="http://saxon.sf.net/generated-variable" xmlns:java-type="http://saxon.sf.net/java-type" version="20" packageVersion="1" saxonVersion="9.7.0.15" timeStamp="2017-09-08T15:57:31.301-04:00" target="JS">
+ <co id="0" binds="">
+  <globalVariable name="Q{}newline" type="document-node()" line="7" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" visibility="PRIVATE" jsAcceptor="function test(item) {return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==9||item.nodeType==11);};if (test(val)) {return val;} else {throw SaxonJS.XError('Conversion failed', 'XTTE0590');}" jsCardCheck="function c(n) {return n==1;};">
+   <doc vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="-1" base="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" flags="t" validation="preserve">
+    <valueOf flags="l">
+     <str val="&#xA;"/>
+    </valueOf>
+   </doc>
+  </globalVariable>
+ </co>
+ <co id="1" binds="0">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg948551280" type="xs:string" line="25" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <convert vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="25" from="xs:untypedAtomic" to="xs:string">
+    <data>
+     <gVarRef name="Q{}newline" bSlot="0"/>
+    </data>
+   </convert>
+  </globalVariable>
+ </co>
+ <co id="2" binds="0">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg1380758207" type="xs:string" line="23" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <convert vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="23" from="xs:untypedAtomic" to="xs:string">
+    <data>
+     <gVarRef name="Q{}newline" bSlot="0"/>
+    </data>
+   </convert>
+  </globalVariable>
+ </co>
+ <co id="3" binds="0">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg716469739" type="xs:string" line="15" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <convert vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="15" from="xs:untypedAtomic" to="xs:string">
+    <data>
+     <gVarRef name="Q{}newline" bSlot="0"/>
+    </data>
+   </convert>
+  </globalVariable>
+ </co>
+ <co id="4" binds="0">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg1773459666" type="xs:string" line="19" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <convert vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="19" from="xs:untypedAtomic" to="xs:string">
+    <data>
+     <gVarRef name="Q{}newline" bSlot="0"/>
+    </data>
+   </convert>
+  </globalVariable>
+ </co>
+ <co id="5" binds="3 4 2 1 5 5 5 5">
+  <mode onNo="TC" flags="dW" patternSlots="0">
+   <templateRule prec="0" prio="-0.5" seq="0" rank="0" minImp="0" slots="0" flags="os" line="11" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl">
+    <p.nodeTest role="match" test="document-node()" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==9||item.nodeType==11);"/>
+    <sequence role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="12">
+     <procInst>
+      <str role="name" val="xml-model"/>
+      <str role="select" val=" href=&#34;http://humanities.lib.rochester.edu/ns/seward.rng&#34; type=&#34;application/xml&#34; schematypens=&#34;http://relaxng.org/ns/structure/1.0&#34;"/>
+     </procInst>
+     <valueOf line="15">
+      <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg716469739" bSlot="0"/>
+     </valueOf>
+     <procInst line="16">
+      <str role="name" val="xml-model"/>
+      <str role="select" val=" href=&#34;http://humanities.lib.rochester.edu/ns/seward.rng&#34; type=&#34;application/xml&#34; schematypens=&#34;http://purl.oclc.org/dsdl/schematron&#34;"/>
+     </procInst>
+     <valueOf line="19">
+      <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg1773459666" bSlot="1"/>
+     </valueOf>
+     <procInst line="20">
+      <str role="name" val="xml-model"/>
+      <str role="select" val=" href=&#34;http://humanities.lib.rochester.edu/ns/seward.sch&#34; type=&#34;application/xml&#34; schematypens=&#34;http://purl.oclc.org/dsdl/schematron&#34;"/>
+     </procInst>
+     <valueOf line="23">
+      <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg1380758207" bSlot="2"/>
+     </valueOf>
+     <comment>
+      <str val="FALL ACTIVITY SPREADSHEET: https://goo.gl/fIdxtI"/>
+     </comment>
+     <valueOf line="25">
+      <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg948551280" bSlot="3"/>
+     </valueOf>
+     <elem line="28" name="TEI" nsuri="http://www.tei-c.org/ns/1.0" flags="d" namespaces="=http://www.tei-c.org/ns/1.0">
+      <sequence>
+       <att name="xml:id" flags="l">
+        <fn name="normalize-space">
+         <fn name="lower-case">
+          <fn name="replace">
+           <lastOf>
+            <fn name="tokenize">
+             <fn name="base-uri">
+              <dot type="document-node()"/>
+             </fn>
+             <str val="/"/>
+             <str val=""/>
+            </fn>
+           </lastOf>
+           <str val=".xml"/>
+           <str val=""/>
+           <str val=""/>
+          </fn>
+         </fn>
+        </fn>
+       </att>
+       <elem line="32" name="teiHeader" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+        <sequence>
+         <elem name="fileDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+          <sequence>
+           <elem name="titleStmt" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+            <sequence>
+             <elem name="title" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <valueOf flags="l">
+               <str val="Seward Family Digital Archive"/>
+              </valueOf>
+             </elem>
+             <elem line="34" name="respStmt" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <elem name="resp" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                <valueOf flags="Sl">
+                 <str val="transcriber"/>
+                </valueOf>
+               </elem>
+               <elem line="35" name="persName" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+                <att name="ref" flags="l">
+                 <str val="spp"/>
+                </att>
+               </elem>
+              </sequence>
+             </elem>
+             <elem line="38" name="respStmt" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <elem name="resp" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                <valueOf flags="l">
+                 <str val="student editor"/>
+                </valueOf>
+               </elem>
+               <elem line="39" name="persName" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+                <att name="ref" flags="l">
+                 <str val="spp"/>
+                </att>
+               </elem>
+              </sequence>
+             </elem>
+            </sequence>
+           </elem>
+           <elem line="43" name="publicationStmt" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+            <elem name="distributor" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+             <valueOf flags="l">
+              <str val="Seward Family Digital Archive"/>
+             </valueOf>
+            </elem>
+           </elem>
+           <elem line="48" name="sourceDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+            <elem name="msDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+             <sequence>
+              <elem name="msIdentifier" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+               <sequence>
+                <elem name="institution" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                 <valueOf flags="l">
+                  <str val="University of Rochester"/>
+                 </valueOf>
+                </elem>
+                <elem line="49" name="repository" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                 <valueOf flags="l">
+                  <str val="Rare Books and Special Collections"/>
+                 </valueOf>
+                </elem>
+               </sequence>
+              </elem>
+              <elem line="52" name="physDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+               <elem name="objectDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+                <att name="form" flags="l">
+                 <str val="letter"/>
+                </att>
+               </elem>
+              </elem>
+              <elem line="56" name="history" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+               <elem name="origin" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                <elem name="date" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+                 <att name="when" flags="l">
+                  <str val="1801-01-01"/>
+                 </att>
+                </elem>
+               </elem>
+              </elem>
+             </sequence>
+            </elem>
+           </elem>
+          </sequence>
+         </elem>
+         <elem line="65" name="encodingDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+          <sequence>
+           <elem name="listPrefixDef" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+            <sequence>
+             <elem name="prefixDef" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="ident" flags="l">
+                <str val="psn"/>
+               </att>
+               <att name="matchPattern" flags="l">
+                <str val="([a-z]+)"/>
+               </att>
+               <att name="replacementPattern" flags="l">
+                <str val="http://seward.lib.rochester.edu/tei/persons.xml#$1"/>
+               </att>
+               <elem line="66" name="p" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                <sequence>
+                 <valueOf flags="l">
+                  <str val=" In the context of this project, private URIs with the prefix &#34;psn&#34; point to&#xA;                                "/>
+                 </valueOf>
+                 <elem line="67" name="gi" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                  <valueOf flags="Sl">
+                   <str val="person"/>
+                  </valueOf>
+                 </elem>
+                 <valueOf flags="l">
+                  <str val=" elements in the project's persons.xml authority file. "/>
+                 </valueOf>
+                </sequence>
+               </elem>
+              </sequence>
+             </elem>
+             <elem line="70" name="prefixDef" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="ident" flags="l">
+                <str val="pla"/>
+               </att>
+               <att name="matchPattern" flags="l">
+                <str val="([a-z]+)"/>
+               </att>
+               <att name="replacementPattern" flags="l">
+                <str val="http://seward.lib.rochester.edu/tei/places.xml#$1"/>
+               </att>
+               <elem line="71" name="p" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                <sequence>
+                 <valueOf flags="l">
+                  <str val=" In the context of this project, private URIs with the prefix &#34;pla&#34; point to&#xA;                                "/>
+                 </valueOf>
+                 <elem line="72" name="gi" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                  <valueOf flags="Sl">
+                   <str val="place"/>
+                  </valueOf>
+                 </elem>
+                 <valueOf flags="l">
+                  <str val=" elements in the project's places.xml authority file. "/>
+                 </valueOf>
+                </sequence>
+               </elem>
+              </sequence>
+             </elem>
+             <elem line="75" name="prefixDef" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="ident" flags="l">
+                <str val="spp"/>
+               </att>
+               <att name="matchPattern" flags="l">
+                <str val="([a-z]+)"/>
+               </att>
+               <att name="replacementPattern" flags="l">
+                <str val="http://seward.lib.rochester.edu/tei/staff.xml#$1"/>
+               </att>
+               <elem line="76" name="p" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                <sequence>
+                 <valueOf flags="l">
+                  <str val=" In the context of this project, private URIs with the prefix &#34;psn&#34; point to&#xA;                                "/>
+                 </valueOf>
+                 <elem line="77" name="gi" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                  <valueOf flags="Sl">
+                   <str val="person"/>
+                  </valueOf>
+                 </elem>
+                 <valueOf flags="l">
+                  <str val=" elements in the project's staff.xml authority file. "/>
+                 </valueOf>
+                </sequence>
+               </elem>
+              </sequence>
+             </elem>
+             <elem line="80" name="prefixDef" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="ident" flags="l">
+                <str val="bib"/>
+               </att>
+               <att name="matchPattern" flags="l">
+                <str val="([a-z]+)"/>
+               </att>
+               <att name="replacementPattern" flags="l">
+                <str val="http://seward.lib.rochester.edu/tei/bibl.xml#$1"/>
+               </att>
+               <elem line="81" name="p" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                <sequence>
+                 <valueOf flags="l">
+                  <str val=" In the context of this project, private URIs with the prefix &#34;psn&#34; point to&#xA;                                "/>
+                 </valueOf>
+                 <elem line="82" name="gi" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                  <valueOf flags="Sl">
+                   <str val="person"/>
+                  </valueOf>
+                 </elem>
+                 <valueOf flags="l">
+                  <str val=" elements in the project's bibl.xml authority file. "/>
+                 </valueOf>
+                </sequence>
+               </elem>
+              </sequence>
+             </elem>
+            </sequence>
+           </elem>
+           <elem line="86" name="tagsDecl" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+            <sequence>
+             <elem name="rendition" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="n" flags="l">
+                <str val="teibp:superscript"/>
+               </att>
+               <att name="scheme" flags="l">
+                <str val="css"/>
+               </att>
+               <valueOf flags="l">
+                <str val=" verical-align: super; font-size: 12px; "/>
+               </valueOf>
+              </sequence>
+             </elem>
+             <elem line="87" name="rendition" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="n" flags="l">
+                <str val="teibp:underline"/>
+               </att>
+               <att name="scheme" flags="l">
+                <str val="css"/>
+               </att>
+               <valueOf flags="l">
+                <str val=" text-decoration: underline; "/>
+               </valueOf>
+              </sequence>
+             </elem>
+             <elem line="88" name="rendition" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="n" flags="l">
+                <str val="teibp:strikethrough"/>
+               </att>
+               <att name="scheme" flags="l">
+                <str val="css"/>
+               </att>
+               <valueOf flags="l">
+                <str val=" text-decoration: line-through; "/>
+               </valueOf>
+              </sequence>
+             </elem>
+             <elem line="89" name="rendition" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="n" flags="l">
+                <str val="teibp:red"/>
+               </att>
+               <att name="scheme" flags="l">
+                <str val="css"/>
+               </att>
+               <valueOf flags="l">
+                <str val=" color: red; "/>
+               </valueOf>
+              </sequence>
+             </elem>
+            </sequence>
+           </elem>
+          </sequence>
+         </elem>
+         <elem line="94" name="profileDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+          <sequence>
+           <elem name="langUsage" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+            <elem name="language" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+             <att name="ident" flags="l">
+              <str val="en"/>
+             </att>
+            </elem>
+           </elem>
+           <elem line="97" name="correspDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+            <sequence>
+             <elem name="correspAction" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="type" flags="l">
+                <str val="sent"/>
+               </att>
+               <elem line="98" name="persName" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+                <att name="ref" flags="l">
+                 <str val="psn"/>
+                </att>
+               </elem>
+               <elem line="99" name="placeName" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+                <att name="ref" flags="l">
+                 <str val="pla"/>
+                </att>
+               </elem>
+               <elem line="100" name="date" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+                <sequence>
+                 <att name="type" flags="l">
+                  <str val="creation"/>
+                 </att>
+                 <att name="when" flags="l">
+                  <str val="1801-01-01"/>
+                 </att>
+                </sequence>
+               </elem>
+              </sequence>
+             </elem>
+             <elem line="102" name="correspAction" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+              <sequence>
+               <att name="type" flags="l">
+                <str val="received"/>
+               </att>
+               <elem line="103" name="persName" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+                <att name="ref" flags="l">
+                 <str val="psn"/>
+                </att>
+               </elem>
+               <elem line="104" name="placeName" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+                <att name="ref" flags="l">
+                 <str val="pla"/>
+                </att>
+               </elem>
+              </sequence>
+             </elem>
+            </sequence>
+           </elem>
+          </sequence>
+         </elem>
+         <elem line="110" name="revisionDesc" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+          <elem name="listChange" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+           <sequence>
+            <elem name="change" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+             <sequence>
+              <att name="type" flags="l">
+               <str val="transcription"/>
+              </att>
+              <att name="who" flags="l">
+               <str val="spp"/>
+              </att>
+             </sequence>
+            </elem>
+            <elem line="111" name="change" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+             <sequence>
+              <att name="type" flags="l">
+               <str val="revision"/>
+              </att>
+              <att name="when" flags="l">
+               <str val="2015-06-16"/>
+              </att>
+              <att name="who" flags="l">
+               <str val="spp"/>
+              </att>
+             </sequence>
+            </elem>
+           </sequence>
+          </elem>
+         </elem>
+        </sequence>
+       </elem>
+       <elem line="116" name="facsimile" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+        <elem name="graphic" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+         <att name="url" flags="l">
+          <str val="image.jpg"/>
+         </att>
+        </elem>
+       </elem>
+       <elem line="122" name="text" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+        <elem name="body" nsuri="http://www.tei-c.org/ns/1.0" flags="dl">
+         <sequence>
+          <comment flags="l">
+           <str val=" Begin Transcription "/>
+          </comment>
+          <elem name="ab" nsuri="http://www.tei-c.org/ns/1.0" flags="dl" namespaces="=http://www.tei-c.org/ns/1.0">
+           <applyT bSlot="4">
+            <filter role="select" flags="b">
+             <axis name="descendant" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='div';"/>
+             <fn name="exists">
+              <filter flags="b">
+               <axis name="parent" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}body)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='body';"/>
+               <fn name="exists">
+                <axis name="parent" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}text)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='text';"/>
+               </fn>
+              </filter>
+             </fn>
+            </filter>
+           </applyT>
+          </elem>
+         </sequence>
+        </elem>
+       </elem>
+      </sequence>
+     </elem>
+    </sequence>
+   </templateRule>
+   <templateRule prec="0" prio="0.5" seq="1" rank="2" minImp="0" slots="0" flags="os" line="129" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl">
+    <p.withUpper role="match" axis="parent" upFirst="false">
+     <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}p)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='p';"/>
+     <p.withUpper axis="parent" upFirst="false">
+      <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='div';"/>
+      <p.withUpper axis="parent" upFirst="false">
+       <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}body)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='body';"/>
+       <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}text)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='text';"/>
+      </p.withUpper>
+     </p.withUpper>
+    </p.withUpper>
+    <sequence role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="130">
+     <applyT flags="i" bSlot="5">
+      <axis role="select" name="child" nodeTest="node()" jsTest="return true;"/>
+     </applyT>
+     <elem name="lb" nsuri="http://www.tei-c.org/ns/1.0" flags="d" namespaces="=http://www.tei-c.org/ns/1.0">
+      <empty/>
+     </elem>
+    </sequence>
+   </templateRule>
+   <templateRule prec="0" prio="0.5" seq="4" rank="2" minImp="0" slots="0" flags="os" line="149" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl">
+    <p.withUpper role="match" axis="parent" upFirst="false">
+     <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}note)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='note';"/>
+     <p.withUpper axis="parent" upFirst="false">
+      <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}p)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='p';"/>
+      <p.withUpper axis="parent" upFirst="false">
+       <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='div';"/>
+       <p.withUpper axis="parent" upFirst="false">
+        <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}body)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='body';"/>
+        <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}text)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='text';"/>
+       </p.withUpper>
+      </p.withUpper>
+     </p.withUpper>
+    </p.withUpper>
+    <elem role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="151" name="note" nsuri="http://www.tei-c.org/ns/1.0" flags="d" namespaces="=http://www.tei-c.org/ns/1.0">
+     <applyT flags="i" bSlot="6">
+      <axis role="select" name="child" nodeTest="node()" jsTest="return true;"/>
+     </applyT>
+    </elem>
+   </templateRule>
+   <templateRule prec="0" prio="0.0" seq="3" rank="1" minImp="0" slots="0" flags="os" line="142" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl">
+    <p.nodeTest role="match" test="element(Q{http://www.tei-c.org/ns/1.0}hi)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='hi';"/>
+    <elem role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="144" name="hi" nsuri="http://www.tei-c.org/ns/1.0" flags="d" namespaces="=http://www.tei-c.org/ns/1.0">
+     <sequence>
+      <att name="rend" flags="l">
+       <convert from="xs:untypedAtomic" to="xs:string">
+        <data>
+         <axis name="attribute" nodeTest="attribute(Q{}rend)" jsTest="return item.name=='rend'"/>
+        </data>
+       </convert>
+      </att>
+      <applyT line="145" flags="i" bSlot="7">
+       <axis role="select" name="child" nodeTest="node()" jsTest="return true;"/>
+      </applyT>
+     </sequence>
+    </elem>
+   </templateRule>
+   <templateRule prec="0" prio="0.5" seq="2" rank="2" minImp="0" slots="0" flags="os" line="134" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl">
+    <p.withUpper role="match" axis="parent" upFirst="true">
+     <p.withPredicate>
+      <p.nodeTest test="text()" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==3;"/>
+      <fn vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="134" name="contains">
+       <cvUntyped to="xs:string">
+        <data>
+         <dot type="text()"/>
+        </data>
+       </cvUntyped>
+       <str val="[page "/>
+      </fn>
+     </p.withPredicate>
+     <p.withUpper axis="parent" upFirst="false">
+      <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}p)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='p';"/>
+      <p.withUpper axis="parent" upFirst="false">
+       <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='div';"/>
+       <p.withUpper axis="parent" upFirst="false">
+        <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}body)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='body';"/>
+        <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}text)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='text';"/>
+       </p.withUpper>
+      </p.withUpper>
+     </p.withUpper>
+    </p.withUpper>
+    <elem role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/teiNewHeader8_25.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="137" name="pb" nsuri="http://www.tei-c.org/ns/1.0" flags="d">
+     <empty/>
+    </elem>
+   </templateRule>
+  </mode>
+ </co>
+ <overridden/>
+ <output>
+  <property name="indent" value="yes"/>
+  <property name="omit-xml-declaration" value="no"/>
+  <property name="{http://saxon.sf.net/}stylesheet-version" value="20"/>
+  <property name="method" value="xml"/>
+ </output>
+ <decimalFormat decimal-separator="46" grouping-separator="44" digit="35" minus-sign="45" percent="37" per-mille="8240" zero-digit="48" exponent-separator="101" pattern-separator="59" infinity="Infinity" NaN="NaN"/>
+</package>
+<?Σ bda88e1a?>

@@ -1,0 +1,8 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <file alias="transform.js">docx_2_tei/web_engine/transform.js</file>
+        <file alias="SaxonJS.js">docx_2_tei/web_engine/Saxon-JS-1.0.1/SaxonJS.js</file>
+        <file alias="from.zip">docx_2_tei/from.zip</file>
+    </qresource>
+</RCC>
