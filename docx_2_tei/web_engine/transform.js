@@ -18,18 +18,23 @@ function checkSaxonInit() {
     return SaxonJS !== undefined;
 }
 
-function addPageBreaks(source) {
+function addPageBreaks(name, source) {
     SaxonJS.transform({
-       stylesheetLocation: window.stylesheets[2],
-       sourceLocation: source,
-    }, (result) => console.log(result));
+        stylesheetLocation: window.stylesheets[2],
+        sourceLocation: source,
+    }, (result) => {
+        let transform = {};
+        transform.xml = new XMLSerializer().serializeToString(result);
+        transform.name = name;
+        window.handler.transform_ready(JSON.stringify(transform));
+    });
 }
 
-function generateHeader(source) {
+function generateHeader(name, source) {
     SaxonJS.transform({
         stylesheetLocation: window.stylesheets[1],
         sourceLocation: source,
-    }, (result) => addPageBreaks(docFragmentToDataURL(result));
+    }, (result) => addPageBreaks(name, docFragmentToDataURL(result)));
 }
 
 function docFragmentToDataURL(fragment) {
@@ -41,12 +46,13 @@ function doTransformation(sources) {
     sources.forEach((source) => {
         SaxonJS.transform({
             stylesheetLocation: window.stylesheets[0],
-            sourceLocation: source,
-        }, (result) => generateHeader(docFragmentToDataURL(result)));
+            sourceLocation: source.file,
+        }, (result) => generateHeader(source.name, docFragmentToDataURL(result)));
     });
 }
 
 function prepareSources(stylesheets, serializedPaths) {
+    console.log(stylesheets)
     window.stylesheets = stylesheets;
     doTransformation(serializedPaths);
 }

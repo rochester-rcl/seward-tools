@@ -10,7 +10,7 @@ from docx_2_tei.doctool import DocTool, FileError, ZipError
 
 # Qt Dependencies
 from PyQt5 import QtGui
-from PyQt5.QtCore import QObject, pyqtSlot, QUrl, QFile, QFileInfo, QIODevice
+from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal, QUrl, QFile, QFileInfo, QIODevice
 from PyQt5.QtWebChannel import QWebChannel
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow, QFileDialog, QListWidgetItem, QTabWidget
@@ -44,12 +44,22 @@ class ScriptLoader(object):
 
 
 class Handler(QObject):
+    send_transform = pyqtSignal('PyQt_PyObject')
+    dispatch_message = pyqtSignal('PyQt_PyObject')
+
     @pyqtSlot(str)
     def transform_ready(self, xml_string):
-        return xml_string
+        self.send_transform.emit(xml_string)
+
+    @pyqtSlot(str)
+    def receive_message(self, message):
+        self.dispatch_message.emit(message)
 
 
 class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
+    PORT = 8081
+    URL_PREFIX = "http://localhost:{}".format(PORT)
+
     def __init__(self):
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
@@ -77,6 +87,8 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
         self.webview.settings().localContentCanAccessRemoteUrls = True
         self.channel = QWebChannel()
         self.handler = Handler()
+        self.handler.send_transform.connect(self.save_xml)
+        self.handler.dispatch_message.connect(self.add_text_to_console)
         self.script_loader = ScriptLoader()
         self.q_channel_ready = False
         self.handler_ready = False
@@ -212,21 +224,25 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
         self.textEdit.insertPlainText(text)
 
     def closeEvent(self, event):
-        print("Closing App")
         if self.doc_tool and self.doc_tool.server_running:
             self.doc_tool.kill_server()
+
+    def save_xml(self, xml_string):
+        doc_info = json.loads(xml_string)
+        new_name = "{}{}".format(self.prepend_text_edit.toPlainText(), doc_info["name"])
+        saved = self.doc_tool.save_xml(new_name, doc_info["xml"], doc_info["name"])
 
     # Transformation stuff
     def transform(self):
         self.doc_tool = DocTool(self.word_dir, self.out_dir)
         try:
             unzipped_files = self.doc_tool.unzip_files()
-            port = 8081
-            prepared_files = ["http://localhost:{}{}".format(port, xml_path) for xml_path in unzipped_files]
-            self.doc_tool.serve_files(port)
+            doc_name = lambda file_path: file_path.split('/')[-3]
+            prepared_files = [{"name": doc_name(xml_path), "file": "{}{}".format(self.URL_PREFIX, xml_path)} for xml_path in unzipped_files]
+            self.doc_tool.serve_files(self.PORT)
             resources_zip = SewardQcApp.copy_resources(':/from.zip', self.doc_tool.temp_dir)
             self.doc_tool.unzip_resources(resources_zip)
-            stylesheets = json.dumps(["http://localhost:{}/from/{}".format(port, stylesheet) for stylesheet in self.stylesheets])
+            stylesheets = json.dumps(["{}/from/{}".format(self.URL_PREFIX, stylesheet) for stylesheet in self.stylesheets])
             serialized = json.dumps(prepared_files)
             self.webview.page().runJavaScript("prepareSources({},{});".format(stylesheets, serialized))
         except ZipError as error:
