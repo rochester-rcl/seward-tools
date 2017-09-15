@@ -8,7 +8,6 @@ from io import StringIO
 import lxml.etree as et
 
 
-
 class FileError(Exception):
     def __init__(self, message, errors):
         super().__init__(message)
@@ -59,8 +58,8 @@ class DocTool(object):
     def serve_files(self, port):
         os.chdir(self.temp_dir)
         cors_request_handler = CORSRequestHandler
+        socketserver.TCPServer.allow_reuse_address = True
         self.httpd = socketserver.TCPServer(("", port), cors_request_handler)
-        self.httpd.allow_reuse_address = True
         self.server_thread = Thread(target=self.start_server)
         self.server_thread.stop_event = Event()
         self.server_thread.daemon = True
@@ -71,9 +70,12 @@ class DocTool(object):
         self.httpd.serve_forever()
 
     def kill_server(self):
-        self.httpd.server_close()
+        self.httpd.shutdown()
         self.server_thread.stop_event.is_set()
         self.server_running = False
+
+    def clean_temp_dir(self):
+        shutil.rmtree(self.temp_dir)
 
     def save_xml(self, name, xml_string, folder_name):
         stream = StringIO(xml_string)
@@ -96,14 +98,6 @@ class DocTool(object):
             os.makedirs(temp_dir_name)
         print("Temp directory already exists. Using {}".format(temp_dir_name))
         return temp_dir_name
-
-    @staticmethod
-    def clean_temp_dir(temp_dir):
-        for dirname, dirnames, filenames in os.walk(temp_dir):
-            for filename in filenames:
-                file_path = os.path.abspath(os.path.join(dirname, filename))
-                if '.docx' not in file_path:
-                    os.remove(file_path)
 
     @staticmethod
     def scan_input(directory):

@@ -45,15 +45,24 @@ class ScriptLoader(object):
 
 class Handler(QObject):
     send_transform = pyqtSignal('PyQt_PyObject')
-    dispatch_message = pyqtSignal('PyQt_PyObject')
+    do_cleanup = pyqtSignal('PyQt_PyObject')
+    dispatch_message = pyqtSignal('PyQt_PyObject', 'PyQt_PyObject')
+    MSG_SUCCESS = "success"
+    MSG_ERROR = "error"
+    MSG_INFO = "info"
 
     @pyqtSlot(str)
     def transform_ready(self, xml_string):
         self.send_transform.emit(xml_string)
 
     @pyqtSlot(str)
-    def receive_message(self, message):
-        self.dispatch_message.emit(message)
+    def transformations_complete(self, status):
+        self.dispatch_message.emit("All transformations completed!", self.MSG_SUCCESS)
+        self.do_cleanup.emit(status)
+
+    @pyqtSlot(str, str)
+    def send_message(self, message, msg_type):
+        self.dispatch_message.emit(message, msg_type)
 
 
 class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
@@ -89,6 +98,7 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
         self.handler = Handler()
         self.handler.send_transform.connect(self.save_xml)
         self.handler.dispatch_message.connect(self.add_text_to_console)
+        self.handler.do_cleanup.connect(self.destroy_doc_tool)
         self.script_loader = ScriptLoader()
         self.q_channel_ready = False
         self.handler_ready = False
@@ -208,7 +218,7 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
             if self.out_dir:
                 self.run_transformation.setEnabled(True)
             self.word_dir = folder
-            self.add_text_to_console("Word directory is set to {}\n".format(folder))
+            self.add_text_to_console("Word directory is set to {}".format(folder), self.handler.MSG_INFO)
 
     def get_out_dir(self):
         dialog = QFileDialog()
@@ -218,19 +228,31 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
             if self.word_dir:
                 self.run_transformation.setEnabled(True)
             self.out_dir = folder
-            self.add_text_to_console("Output Directory is Set to {}\n".format(folder))
+            self.add_text_to_console("Output directory is set to {}".format(folder), self.handler.MSG_INFO)
 
-    def add_text_to_console(self, text):
-        self.textEdit.insertPlainText(text)
+    def add_text_to_console(self, text, msg_type):
+        handler = self.handler
+        if msg_type is handler.MSG_ERROR:
+            self.textEdit.setTextColor(QtGui.QColor(255,0,0))
+        if msg_type is handler.MSG_SUCCESS:
+            self.textEdit.setTextColor(QtGui.QColor(0,100,0))
+        self.textEdit.insertPlainText("{}\n\n".format(text))
+        self.textEdit.setTextColor(QtGui.QColor(0,0,0))
 
     def closeEvent(self, event):
         if self.doc_tool and self.doc_tool.server_running:
             self.doc_tool.kill_server()
+            event.accept()
 
     def save_xml(self, xml_string):
         doc_info = json.loads(xml_string)
         new_name = "{}{}".format(self.prepend_text_edit.toPlainText(), doc_info["name"])
         saved = self.doc_tool.save_xml(new_name, doc_info["xml"], doc_info["name"])
+
+        if saved:
+            self.add_text_to_console("{} saved to {}".format(new_name, self.out_dir), self.handler.MSG_SUCCESS)
+        else:
+            self.add_text_to_console("Unabled to save {} to {}".format(new_name, self.out_dir), self.handler.MSG_ERROR)
 
     # Transformation stuff
     def transform(self):
@@ -239,14 +261,20 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
             unzipped_files = self.doc_tool.unzip_files()
             doc_name = lambda file_path: file_path.split('/')[-3]
             prepared_files = [{"name": doc_name(xml_path), "file": "{}{}".format(self.URL_PREFIX, xml_path)} for xml_path in unzipped_files]
-            self.doc_tool.serve_files(self.PORT)
+            if not self.doc_tool.server_running:
+                self.doc_tool.serve_files(self.PORT)
             resources_zip = SewardQcApp.copy_resources(':/from.zip', self.doc_tool.temp_dir)
             self.doc_tool.unzip_resources(resources_zip)
             stylesheets = json.dumps(["{}/from/{}".format(self.URL_PREFIX, stylesheet) for stylesheet in self.stylesheets])
             serialized = json.dumps(prepared_files)
             self.webview.page().runJavaScript("prepareSources({},{});".format(stylesheets, serialized))
         except ZipError as error:
-            self.add_text_to_console(error)
+            self.add_text_to_console(error, self.handler.MSG_ERROR)
+
+    def destroy_doc_tool(self):
+        self.doc_tool.kill_server()
+        self.doc_tool.clean_temp_dir()
+        self.doc_tool = None
 
     @staticmethod
     def copy_resources(src, dst):
