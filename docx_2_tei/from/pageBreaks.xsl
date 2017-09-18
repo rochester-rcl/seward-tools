@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei">
-   
-    
-    
-    <xsl:output indent="yes" method="xml"/>
+<xsl:transform version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.tei-c.org/ns/1.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
+    <xsl:output indent="yes" method="xml" omit-xml-declaration="no"/>
     
     <xsl:template match="@* | node()">
         <xsl:copy>
@@ -11,13 +8,13 @@
         </xsl:copy>
      </xsl:template>
 
-
-    <xsl:template match="tei:text/tei:body/tei:div/tei:ab/tei:pb">
-    <pb>
-        <xsl:attribute name="n">
-            <xsl:number/><xsl:value-of select="tei:text/tei:body/tei:div/tei:ab/tei:pb"/>
-        </xsl:attribute>
-    </pb>
+    <xsl:template match="/TEI/text/body/ab/pb">
+        <xsl:variable name="pageNumber"> <xsl:number/><xsl:value-of select="/TEI/text/body/ab/pb"/></xsl:variable>
+        <pb xmlns="http://www.tei-c.org/ns/1.0">
+            <xsl:attribute name="n">
+                <xsl:value-of select="normalize-space($pageNumber)"/>
+            </xsl:attribute>
+        </pb>
     </xsl:template> 
 
 </xsl:transform>

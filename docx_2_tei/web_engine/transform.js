@@ -22,20 +22,24 @@ function checkSaxonInit() {
     return SaxonJS !== undefined;
 }
 
+function completeTransformation(docFragment, name) {
+    let transform = {};
+    transform.xml = new XMLSerializer().serializeToString(docFragment);
+    transform.name = name;
+    window.handler.transform_ready(JSON.stringify(transform));
+    window.completedSources++;
+    console.log(window.handler.MSG_SUCCESS);
+    window.handler.send_message("Transformation of " + name +
+    " completed " + "(" + window.completedSources + "/" + window.sourcesCount + ")", MSG_SUCCESS);
+    if (window.completedSources === window.sourcesCount) window.handler.transformations_complete(true);
+}
+
 function addPageBreaks(name, source) {
     SaxonJS.transform({
         stylesheetLocation: window.stylesheets[2],
         sourceLocation: source,
     }, (result) => {
-        let transform = {};
-        transform.xml = new XMLSerializer().serializeToString(result);
-        transform.name = name;
-        window.handler.transform_ready(JSON.stringify(transform));
-        window.completedSources++;
-        console.log(window.handler.MSG_SUCCESS);
-        window.handler.send_message("Transformation of " + name +
-        " completed " + "(" + window.completedSources + "/" + window.sourcesCount + ")", MSG_SUCCESS);
-        if (window.completedSources === window.sourcesCount) window.handler.transformations_complete(true);
+        completeTransformation(result, name);
     });
 }
 

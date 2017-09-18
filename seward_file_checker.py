@@ -233,11 +233,11 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
     def add_text_to_console(self, text, msg_type):
         handler = self.handler
         if msg_type is handler.MSG_ERROR:
-            self.textEdit.setTextColor(QtGui.QColor(255,0,0))
+            self.textEdit.setTextColor(QtGui.QColor(255, 0, 0))
         if msg_type is handler.MSG_SUCCESS:
-            self.textEdit.setTextColor(QtGui.QColor(0,100,0))
+            self.textEdit.setTextColor(QtGui.QColor(0, 100, 0))
         self.textEdit.insertPlainText("{}\n\n".format(text))
-        self.textEdit.setTextColor(QtGui.QColor(0,0,0))
+        self.textEdit.setTextColor(QtGui.QColor(0, 0, 0))
 
     def closeEvent(self, event):
         if self.doc_tool and self.doc_tool.server_running:
@@ -260,12 +260,14 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
         try:
             unzipped_files = self.doc_tool.unzip_files()
             doc_name = lambda file_path: file_path.split('/')[-3]
-            prepared_files = [{"name": doc_name(xml_path), "file": "{}{}".format(self.URL_PREFIX, xml_path)} for xml_path in unzipped_files]
+            prepared_files = [{"name": doc_name(xml_path), "file": "{}{}".format(self.URL_PREFIX, xml_path)} for
+                              xml_path in unzipped_files]
             if not self.doc_tool.server_running:
                 self.doc_tool.serve_files(self.PORT)
             resources_zip = SewardQcApp.copy_resources(':/from.zip', self.doc_tool.temp_dir)
             self.doc_tool.unzip_resources(resources_zip)
-            stylesheets = json.dumps(["{}/from/{}".format(self.URL_PREFIX, stylesheet) for stylesheet in self.stylesheets])
+            stylesheets = json.dumps(
+                ["{}/from/{}".format(self.URL_PREFIX, stylesheet) for stylesheet in self.stylesheets])
             serialized = json.dumps(prepared_files)
             self.webview.page().runJavaScript("prepareSources({},{});".format(stylesheets, serialized))
         except ZipError as error:
@@ -290,6 +292,7 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
         except IOError as error:
             print(error)
             return False
+
 
 if __name__ == "__main__":
     # Set up GUI

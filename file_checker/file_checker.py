@@ -3,6 +3,7 @@ from itertools import zip_longest
 import collections
 import os
 
+
 class FileChecker(object):
     def __init__(self, directory, fix):
         self.directory = directory
@@ -17,9 +18,10 @@ class FileChecker(object):
                 directory):  # Loop through the directory passed from --directory argument
             for in_file in filenames:
                 file_info = collections.namedtuple('FileInfo', ['directory', 'filename', 'ext'])  # immutable
-                if path == True:
+                if path is True:
                     file_path = os.path.abspath(os.path.join(dirname, in_file))
-                    file_list.append(file_info(directory=dirname, filename=file_path, ext=os.path.splitext(file_path)[1]))
+                    file_list.append(
+                        file_info(directory=dirname, filename=file_path, ext=os.path.splitext(file_path)[1]))
                 else:
                     file_list.append(file_info(directory=dirname, filename=in_file, ext=os.path.splitext(in_file)[1]))
 
@@ -49,7 +51,7 @@ class FileChecker(object):
         i = 1
         for graphic, jpg_file in zip_longest(facs, jpg_file_list, fillvalue=None):
 
-            if (graphic is not None and jpg_file is not None):
+            if graphic is not None and jpg_file is not None:
                 if graphic.attrib['url'] != jpg_file.filename:
                     graphic.attrib['url'] = jpg_file.filename
                     error_return_val['fixedGraphicUrl'] = True

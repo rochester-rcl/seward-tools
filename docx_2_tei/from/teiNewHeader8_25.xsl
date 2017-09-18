@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:transform version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
-    xmlns="http://www.tei-c.org/ns/1.0">
+    xmlns="http://www.tei-c.org/ns/1.0"
+>
     
     <xsl:output indent="yes" method="xml" omit-xml-declaration="no"/>
     <xsl:variable name="newline">
@@ -24,7 +25,7 @@
             <xsl:comment>FALL ACTIVITY SPREADSHEET: https://goo.gl/fIdxtI</xsl:comment>
             <xsl:value-of select="$newline"/>
         
-        <TEI xmlns="http://www.tei-c.org/ns/1.0">
+        <TEI>
             <xsl:attribute name="xml:id" select="lower-case(replace(tokenize(base-uri(), '/')[last()], '.xml',''))"/>
             <teiHeader>
                 <fileDesc>

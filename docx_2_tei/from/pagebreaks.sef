@@ -1,67 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://ns.saxonica.com/xslt/export" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vv="http://saxon.sf.net/generated-variable" xmlns:java-type="http://saxon.sf.net/java-type" version="10" packageVersion="1" saxonVersion="9.7.0.15" timeStamp="2017-09-08T15:58:22.872-04:00" target="JS">
+<package xmlns="http://ns.saxonica.com/xslt/export" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vv="http://saxon.sf.net/generated-variable" xmlns:java-type="http://saxon.sf.net/java-type" version="20" packageVersion="1" saxonVersion="9.7.0.15" timeStamp="2017-09-18T12:08:46.876-04:00" target="JS">
  <co id="0" binds="0">
   <mode onNo="TC" flags="dW" patternSlots="0">
-   <templateRule prec="0" prio="0.5" seq="1" rank="1" minImp="0" slots="0" flags="os" line="15" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl">
+   <templateRule prec="0" prio="0.5" seq="1" rank="1" minImp="0" slots="1" flags="os" line="11" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl">
     <p.withUpper role="match" axis="parent" upFirst="false">
      <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}pb)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='pb';"/>
      <p.withUpper axis="parent" upFirst="false">
       <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}ab)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='ab';"/>
       <p.withUpper axis="parent" upFirst="false">
-       <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='div';"/>
+       <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}body)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='body';"/>
        <p.withUpper axis="parent" upFirst="false">
-        <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}body)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='body';"/>
         <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}text)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='text';"/>
+        <p.withUpper axis="parent" upFirst="false">
+         <p.nodeTest test="element(Q{http://www.tei-c.org/ns/1.0}TEI)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='TEI';"/>
+         <p.nodeTest test="document-node()" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==9||item.nodeType==11);"/>
+        </p.withUpper>
        </p.withUpper>
       </p.withUpper>
      </p.withUpper>
     </p.withUpper>
-    <elem role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0 tei=http://www.tei-c.org/ns/1.0" line="18" name="pb" nsuri="http://www.tei-c.org/ns/1.0" flags="d">
-     <att name="n" flags="l">
+    <let role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="12" var="pageNumber" as="xs:untypedAtomic" slot="0" eval="7">
+     <cast as="xs:untypedAtomic" emptiable="0">
       <fn name="string-join">
-       <convert from="xs:untypedAtomic" to="xs:string">
-        <data>
-         <mergeAdj>
-          <sequence>
-           <valueOf>
-            <xslNumber flags="1" level="simple">
-             <dot role="select" type="element(Q{http://www.tei-c.org/ns/1.0}pb)"/>
-             <int role="startAt" val="1"/>
-            </xslNumber>
-           </valueOf>
-           <valueOf>
-            <convert from="xs:untypedAtomic" to="xs:string">
-             <first>
-              <data>
+       <sequence>
+        <cast as="xs:untypedAtomic" emptiable="0">
+         <xslNumber level="simple">
+          <dot role="select" type="element(Q{http://www.tei-c.org/ns/1.0}pb)"/>
+          <int role="startAt" val="1"/>
+         </xslNumber>
+        </cast>
+        <cast as="xs:untypedAtomic" emptiable="0">
+         <fn name="string-join">
+          <convert from="xs:untypedAtomic" to="xs:string">
+           <data>
+            <slash>
+             <slash>
+              <slash>
                <slash>
-                <slash>
-                 <slash>
-                  <slash>
-                   <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}text)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='text';"/>
-                   <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}body)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='body';"/>
-                  </slash>
-                  <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='div';"/>
-                 </slash>
-                 <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}ab)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='ab';"/>
+                <slash simple="1">
+                 <root/>
+                 <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}TEI)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='TEI';"/>
                 </slash>
-                <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}pb)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='pb';"/>
+                <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}text)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='text';"/>
                </slash>
-              </data>
-             </first>
-            </convert>
-           </valueOf>
-          </sequence>
-         </mergeAdj>
-        </data>
-       </convert>
+               <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}body)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='body';"/>
+              </slash>
+              <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}ab)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='ab';"/>
+             </slash>
+             <axis name="child" nodeTest="element(Q{http://www.tei-c.org/ns/1.0}pb)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.tei-c.org/ns/1.0'&amp;&amp;q.local=='pb';"/>
+            </slash>
+           </data>
+          </convert>
+          <str val=" "/>
+         </fn>
+        </cast>
+       </sequence>
        <str val=""/>
       </fn>
-     </att>
-    </elem>
+     </cast>
+     <elem line="15" name="pb" nsuri="http://www.tei-c.org/ns/1.0" flags="d" namespaces="=http://www.tei-c.org/ns/1.0">
+      <att name="n" flags="l">
+       <convert from="xs:untypedAtomic" to="xs:string">
+        <cast as="xs:untypedAtomic" emptiable="0">
+         <fn name="normalize-space">
+          <cvUntyped to="xs:string">
+           <varRef name="pageNumber" slot="0"/>
+          </cvUntyped>
+         </fn>
+        </cast>
+       </convert>
+      </att>
+     </elem>
+    </let>
    </templateRule>
-   <templateRule prec="0" prio="-0.5" seq="0" rank="0" minImp="0" slots="0" flags="os" line="8" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl">
+   <templateRule prec="0" prio="-0.5" seq="0" rank="0" minImp="0" slots="0" flags="os" line="5" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl">
     <p.nodeTest role="match" test="attribute()" jsTest="return SaxonJS.U.isAttr(item)"/>
-    <copy role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0 tei=http://www.tei-c.org/ns/1.0" line="10" flags="cin">
+    <copy role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="7" flags="cin">
      <applyT role="content" bSlot="0">
       <sequence role="select">
        <axis name="attribute" nodeTest="attribute()" jsTest="return SaxonJS.U.isAttr(item)"/>
@@ -70,9 +84,9 @@
      </applyT>
     </copy>
    </templateRule>
-   <templateRule prec="0" prio="-0.5" seq="0" rank="0" minImp="0" slots="0" flags="os" line="8" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl">
+   <templateRule prec="0" prio="-0.5" seq="0" rank="0" minImp="0" slots="0" flags="os" line="5" module="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl">
     <p.nodeTest role="match" test="( element() | text() | comment() | processing-instruction() )" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==1 || item.nodeType==3 || item.nodeType==7 || item.nodeType==8);"/>
-    <copy role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0 tei=http://www.tei-c.org/ns/1.0" line="10" flags="cin">
+    <copy role="action" vn="20" baseUri="file:/home/jromphf/Applications/sewardQcGui/docx_2_tei/from/pageBreaks.xsl" defaultElementNS="http://www.tei-c.org/ns/1.0" ns="xsl=http://www.w3.org/1999/XSL/Transform =http://www.tei-c.org/ns/1.0" line="7" flags="cin">
      <applyT role="content" bSlot="0">
       <sequence role="select">
        <axis name="attribute" nodeTest="attribute()" jsTest="return SaxonJS.U.isAttr(item)"/>
@@ -86,9 +100,10 @@
  <overridden/>
  <output>
   <property name="indent" value="yes"/>
-  <property name="{http://saxon.sf.net/}stylesheet-version" value="10"/>
+  <property name="omit-xml-declaration" value="no"/>
+  <property name="{http://saxon.sf.net/}stylesheet-version" value="20"/>
   <property name="method" value="xml"/>
  </output>
  <decimalFormat decimal-separator="46" grouping-separator="44" digit="35" minus-sign="45" percent="37" per-mille="8240" zero-digit="48" exponent-separator="101" pattern-separator="59" infinity="Infinity" NaN="NaN"/>
 </package>
-<?Σ 1665c6f3?>
+<?Σ 5b155fa8?>
