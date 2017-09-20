@@ -1,0 +1,12 @@
+altgraph==0.14
+appdirs==1.4.3
+future==0.16.0
+lxml==3.7.3
+macholib==1.8
+packaging==16.8
+pefile==2017.9.3
+PyInstaller==3.3.dev0+g8e199eb
+pyparsing==2.2.0
+PyQt5==5.8.2
+sip==4.19.2
+six==1.10.0
