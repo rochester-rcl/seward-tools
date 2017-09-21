@@ -69,16 +69,7 @@ function docFragmentToDataURL(fragment) {
     return URL.createObjectURL(blob);
 }
 
-function chunkSources(sources, chunkSize) {
-    let all = [];
-    for (let i=0; i < sources.length; i+=chunkSize) {
-       all.push(sources.slice(i, i+chunkSize));
-    }
-    return all;
-}
-
-function transformSources(sources) {
-     var tasks = sources.map((source, index) => {
+function transformSource(source) {
         return new Promise((resolve, reject) => {
             window.handler.send_message("Starting transformation on " + source.name, MSG_INFO);
             SaxonJS.transform({
@@ -91,26 +82,22 @@ function transformSources(sources) {
                 });
             }));
         });
-    });
-    return Promise.all(tasks).catch((error) => reject(error));
 }
 
-function doTransformation(sources) {
-    if (window.completedBatches < window.batches.length) {
-        transformSources(sources).then(() => {
-            window.completedBatches++;
-            doTransformation(window.batches[window.completedBatches]);
-        });
+function doTransformation(source) {
+    if (window.completedSources < window.sourcesCount) {
+        transformSource(source).then(() => {
+            doTransformation(window.sources[window.completedSources]);
+        }).catch((error) => window.handler.send_message(error, MSG_ERROR));
     }
 }
 
 function prepareSources(stylesheets, serializedPaths) {
     window.sourcesCount = serializedPaths.length;
     window.completedSources = 0;
+    window.sources = serializedPaths;
     window.stylesheets = stylesheets;
-    window.completedBatches = 0;
-    window.batches = chunkSources(serializedPaths, 5);
-    doTransformation(window.batches[0]);
+    doTransformation(window.sources[0]);
 }
 
 initQChannel().then((channel) => {

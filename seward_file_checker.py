@@ -237,6 +237,7 @@ class SewardQcApp(QMainWindow, Ui_MainWindow, QWidget):
         if msg_type is handler.MSG_SUCCESS:
             self.textEdit.setTextColor(QtGui.QColor(0, 100, 0))
         self.textEdit.insertPlainText("{}\n\n".format(text))
+        self.textEdit.verticalScrollBar().setValue(self.textEdit.verticalScrollBar().maximum())
         self.textEdit.setTextColor(QtGui.QColor(0, 0, 0))
 
     def closeEvent(self, event):
