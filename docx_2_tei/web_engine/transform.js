@@ -72,13 +72,12 @@ function docFragmentToDataURL(fragment) {
 function chunkSources(sources, chunkSize) {
     let all = [];
     for (let i=0; i < sources.length; i+=chunkSize) {
-       all.push(sources.slice(i, i+=chunkSize));
+       all.push(sources.slice(i, i+chunkSize));
     }
     return all;
 }
 
 function transformSources(sources) {
-   return new Promise((resolve, reject) => {
      var tasks = sources.map((source, index) => {
         return new Promise((resolve, reject) => {
             window.handler.send_message("Starting transformation on " + source.name, MSG_INFO);
@@ -93,26 +92,25 @@ function transformSources(sources) {
             }));
         });
     });
-    Promise.all(tasks).then((result) => resolve()).catch((error) => reject(error));
-   });
+    return Promise.all(tasks).catch((error) => reject(error));
 }
 
 function doTransformation(sources) {
-    let chunkSize = 5;
-    let chunks = chunkSources(sources, chunkSize);
-    let totalBatches = chunks.length;
-    chunks.forEach((chunk, index) => {
-       let batchNo = index + 1;
-       window.handler.send_message("Processing Batch " + batchNo + " of " + totalBatches, MSG_INFO);
-       transformSources(chunk);
-    });
+    if (window.completedBatches < window.batches.length) {
+        transformSources(sources).then(() => {
+            window.completedBatches++;
+            doTransformation(window.batches[window.completedBatches]);
+        });
+    }
 }
 
 function prepareSources(stylesheets, serializedPaths) {
     window.sourcesCount = serializedPaths.length;
     window.completedSources = 0;
     window.stylesheets = stylesheets;
-    doTransformation(serializedPaths);
+    window.completedBatches = 0;
+    window.batches = chunkSources(serializedPaths, 5);
+    doTransformation(window.batches[0]);
 }
 
 initQChannel().then((channel) => {
