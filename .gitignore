@@ -37,6 +37,6 @@ ehthumbs.db
 Thumbs.db
 
 josh/*
-__pycache__/*
-file_checker/__pycache__/*
+__pycache__/
+file_checker/__pycache__/
 *.idea
