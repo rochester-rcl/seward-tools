@@ -5,8 +5,8 @@ import os
 import sys
 import csv
 import json
-from file_checker import FileChecker
-from doctool import DocTool, FileError, ZipError
+from file_checker.file_checker import FileChecker
+from docx_2_tei.doctool import DocTool, FileError, ZipError
 
 # Qt Dependencies
 from PyQt5 import QtGui
