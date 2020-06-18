@@ -11,7 +11,7 @@ Pip3
 
 ### Running the Application
 
-python3 docx_transformer.py
+`python3 docx_transformer.py`
 
 ### Adding Transformations
 

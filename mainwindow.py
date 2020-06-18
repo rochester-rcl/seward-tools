@@ -120,7 +120,7 @@ class Ui_MainWindow(object):
         self.run_report.setStyleSheet("")
         self.run_report.setObjectName("run_report")
         self.gridLayout_2.addWidget(self.run_report, 4, 0, 1, 1)
-        self.tabWidget.addTab(self.tab2, "")
+        # self.tabWidget.addTab(self.tab2, "")
         self.gridLayout.addWidget(self.tabWidget, 3, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)
