@@ -108,7 +108,7 @@ class DocXApp(QMainWindow, Ui_MainWindow, QWidget):
         self.word_dir = None
         self.out_dir = None
         self.doc_tool = None
-        self.stylesheets = ["docxtotei.sef",]
+        self.stylesheets = ["docxtotei.sef", "sewardheader.sef", "pagebreaks.sef"]
 
     # Initialization
     # ---------------------------------------------------------------------------------------------

@@ -4,7 +4,7 @@ const MSG_ERROR = "error";
 
 function initQChannel() {
   return new Promise((resolve, reject) => {
-    var channel = new QWebChannel(qt.webChannelTransport, (channel) => {
+    var channel = new QWebChannel(qt.webChannelTransport, channel => {
       if (channel) {
         resolve(channel);
       } else {
@@ -45,14 +45,14 @@ function completeTransformation(name, docFragment) {
 }
 
 function prepareTransformation(stylesheetIndex) {
-  return (source) =>
+  return source =>
     new Promise((resolve, reject) => {
       SaxonJS.transform(
         {
           stylesheetLocation: window.stylesheets[stylesheetIndex],
-          sourceLocation: source,
+          sourceLocation: source
         },
-        (result) => {
+        result => {
           if (result) {
             resolve(result);
           } else {
@@ -65,7 +65,7 @@ function prepareTransformation(stylesheetIndex) {
 
 function docFragmentToObjectURL(fragment) {
   const blob = new Blob([new XMLSerializer().serializeToString(fragment)], {
-    type: "application/xml",
+    type: "application/xml"
   });
   return URL.createObjectURL(blob);
 }
@@ -77,10 +77,16 @@ function transformSource(source) {
       MSG_INFO
     );
     const docxToTEI = prepareTransformation(0);
-    docxToTEI(source.file).then((result) => {
-      completeTransformation(source.name, result);
-      resolve();
-    });
+    const generateHeader = prepareTransformation(1);
+    const addPageBreaks = prepareTransformation(2);
+    docxToTEI(source.file)
+      .then(result => generateHeader(docFragmentToObjectURL(result)))
+      .then(result => addPageBreaks(docFragmentToObjectURL(result)))
+      .then(result => {
+        completeTransformation(source.name, result);
+        resolve();
+      })
+      .catch(err => reject(err));
   });
 }
 
@@ -90,12 +96,11 @@ function doTransformation(source) {
       .then(() => {
         doTransformation(window.sources[window.completedSources]);
       })
-      .catch((error) => window.handler.send_message(error, MSG_ERROR));
+      .catch(error => window.handler.send_message(error, MSG_ERROR));
   }
 }
 
 function prepareSources(stylesheets, serializedPaths) {
-  console.log("HERE");  
   window.sourcesCount = serializedPaths.length;
   window.completedSources = 0;
   window.sources = serializedPaths;
@@ -103,6 +108,6 @@ function prepareSources(stylesheets, serializedPaths) {
   doTransformation(window.sources[0]);
 }
 
-initQChannel().then((channel) => {
+initQChannel().then(channel => {
   window.handler = channel.objects.handler;
 });
