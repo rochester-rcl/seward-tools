@@ -57,7 +57,8 @@ class Handler(QObject):
 
     @pyqtSlot(str)
     def transformations_complete(self, status):
-        self.dispatch_message.emit("All transformations completed!", self.MSG_SUCCESS)
+        self.dispatch_message.emit(
+            "All transformations completed!", self.MSG_SUCCESS)
         self.do_cleanup.emit(status)
 
     @pyqtSlot(str, str)
@@ -108,19 +109,23 @@ class DocXApp(QMainWindow, Ui_MainWindow, QWidget):
         self.word_dir = None
         self.out_dir = None
         self.doc_tool = None
-        self.stylesheets = ["docxtotei.sef", "sewardheader.sef", "pagebreaks.sef"]
+        self.stylesheets = ["docxtotei.sef",
+                            "sewardheader.sef", "pagebreaks.sef"]
 
     # Initialization
     # ---------------------------------------------------------------------------------------------
     def init_q_channel(self):
         self.channel.registerObject('handler', self.handler)
-        self.webview.page().runJavaScript(self.script_loader.q_channel_script, self.set_channel)
+        self.webview.page().runJavaScript(
+            self.script_loader.q_channel_script, self.set_channel)
 
     def init_saxon(self):
-        self.webview.page().runJavaScript(self.script_loader.saxon_script, self.verify_saxon)
+        self.webview.page().runJavaScript(
+            self.script_loader.saxon_script, self.verify_saxon)
 
     def init_transform(self):
-        self.webview.page().runJavaScript(self.script_loader.transform_script, self.verify_handler)
+        self.webview.page().runJavaScript(
+            self.script_loader.transform_script, self.verify_handler)
 
     def set_handler_status(self, status):
         self.handler_ready = status
@@ -143,7 +148,8 @@ class DocXApp(QMainWindow, Ui_MainWindow, QWidget):
     def file_dialog(self):
         self.list_widget.clear()
         dialog = QFileDialog()
-        folder = dialog.getExistingDirectory(self, 'Select Directory with Letter Subfolders')
+        folder = dialog.getExistingDirectory(
+            self, 'Select Directory with Letter Subfolders')
 
         if folder:
             self.run_report.setEnabled(True)
@@ -169,20 +175,24 @@ class DocXApp(QMainWindow, Ui_MainWindow, QWidget):
 
             if isinstance(test, dict):
                 if 'xml file missing' in test.values():
-                    self.csv_tuples.append((test['directory'].split('/')[-1], test['message']))
+                    self.csv_tuples.append(
+                        (test['directory'].split('/')[-1], test['message']))
 
             if isinstance(test, list):
                 if 'url mismatch' in test[0].values():
                     for error in test:
-                        self.csv_tuples.append((error['filename'].split('/')[-1], error['graphicError']))
+                        self.csv_tuples.append(
+                            (error['filename'].split('/')[-1], error['graphicError']))
 
                 if 'missing psn or pla prefix' in test[0].values():
                     for error in test:
-                        self.csv_tuples.append((error['filename'].split('/')[-1], error['prefixError']))
+                        self.csv_tuples.append(
+                            (error['filename'].split('/')[-1], error['prefixError']))
 
                 if "number of graphic tags and page breaks don't match number of images" in test[0].values():
                     for error in test:
-                        self.csv_tuples.append((error['filename'].split('/')[-1], error['imgCountMismatch']))
+                        self.csv_tuples.append(
+                            (error['filename'].split('/')[-1], error['imgCountMismatch']))
 
         if len(self.csv_tuples) > 0:
             for row in self.csv_tuples:
@@ -212,13 +222,15 @@ class DocXApp(QMainWindow, Ui_MainWindow, QWidget):
 
     def get_word_dir(self):
         dialog = QFileDialog()
-        folder = dialog.getExistingDirectory(self, 'Select Directory with Docx Files to Transform')
+        folder = dialog.getExistingDirectory(
+            self, 'Select Directory with Docx Files to Transform')
 
         if folder:
             if self.out_dir:
                 self.run_transformation.setEnabled(True)
             self.word_dir = folder
-            self.add_text_to_console("Word directory is set to {}".format(folder), self.handler.MSG_INFO)
+            self.add_text_to_console(
+                "Word directory is set to {}".format(folder), self.handler.MSG_INFO)
 
     def get_out_dir(self):
         dialog = QFileDialog()
@@ -228,7 +240,8 @@ class DocXApp(QMainWindow, Ui_MainWindow, QWidget):
             if self.word_dir:
                 self.run_transformation.setEnabled(True)
             self.out_dir = folder
-            self.add_text_to_console("Output directory is set to {}".format(folder), self.handler.MSG_INFO)
+            self.add_text_to_console(
+                "Output directory is set to {}".format(folder), self.handler.MSG_INFO)
 
     def add_text_to_console(self, text, msg_type):
         handler = self.handler
@@ -237,7 +250,8 @@ class DocXApp(QMainWindow, Ui_MainWindow, QWidget):
         if msg_type is handler.MSG_SUCCESS:
             self.textEdit.setTextColor(QtGui.QColor(0, 100, 0))
         self.textEdit.insertPlainText("{}\n\n".format(text))
-        self.textEdit.verticalScrollBar().setValue(self.textEdit.verticalScrollBar().maximum())
+        self.textEdit.verticalScrollBar().setValue(
+            self.textEdit.verticalScrollBar().maximum())
         self.textEdit.setTextColor(QtGui.QColor(180, 180, 180))
 
     def closeEvent(self, event):
@@ -247,30 +261,38 @@ class DocXApp(QMainWindow, Ui_MainWindow, QWidget):
 
     def save_xml(self, xml_string):
         doc_info = json.loads(xml_string)
-        new_name = "{}{}".format(self.prepend_text_edit.toPlainText(), doc_info["name"])
-        saved = self.doc_tool.save_xml(new_name, doc_info["xml"], doc_info["name"])
+        new_name = "{}{}".format(
+            self.prepend_text_edit.toPlainText(), doc_info["name"])
+        saved = self.doc_tool.save_xml(
+            new_name, doc_info["xml"], doc_info["name"])
 
         if saved:
-            self.add_text_to_console("{} saved to {}".format(new_name, self.out_dir), self.handler.MSG_SUCCESS)
+            self.add_text_to_console("{} saved to {}".format(
+                new_name, self.out_dir), self.handler.MSG_SUCCESS)
         else:
-            self.add_text_to_console("Unabled to save {} to {}".format(new_name, self.out_dir), self.handler.MSG_ERROR)
+            self.add_text_to_console("Unable to save {} to {}".format(
+                new_name, self.out_dir), self.handler.MSG_ERROR)
 
     # Transformation stuff
     def transform(self):
         self.doc_tool = DocTool(self.word_dir, self.out_dir)
         try:
             unzipped_files = self.doc_tool.unzip_files()
-            doc_name = lambda file_path: file_path.split('/')[-3]
+            def doc_name(file_path): return file_path.split('/')[-3]
             prepared_files = [{"name": doc_name(xml_path), "file": "{}{}".format(self.URL_PREFIX, xml_path)} for
                               xml_path in unzipped_files]
             if not self.doc_tool.server_running:
                 self.doc_tool.serve_files(self.PORT)
-            resources_zip = DocXApp.copy_resources(':/from.zip', self.doc_tool.temp_dir)
+            resources_zip = DocXApp.copy_resources(
+                ':/from.zip', self.doc_tool.temp_dir)
             self.doc_tool.unzip_resources(resources_zip)
             stylesheets = json.dumps(
                 ["{}/from/{}".format(self.URL_PREFIX, stylesheet) for stylesheet in self.stylesheets])
             serialized = json.dumps(prepared_files)
-            self.webview.page().runJavaScript("prepareSources({},{});".format(stylesheets, serialized))
+            options = json.dumps(
+                {"prepend": self.prepend_text_edit.toPlainText()})
+            self.webview.page().runJavaScript("prepareSources({},{},{});".format(
+                stylesheets, serialized, options))
         except ZipError as error:
             self.add_text_to_console(error, self.handler.MSG_ERROR)
 

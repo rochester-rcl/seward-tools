@@ -28,7 +28,6 @@ function completeTransformation(name, docFragment) {
   transform.name = name;
   window.handler.transform_ready(JSON.stringify(transform));
   window.completedSources++;
-  console.log(window.handler.MSG_SUCCESS);
   window.handler.send_message(
     "Transformation of " +
       name +
@@ -44,13 +43,14 @@ function completeTransformation(name, docFragment) {
     window.handler.transformations_complete(true);
 }
 
-function prepareTransformation(stylesheetIndex) {
+function prepareTransformation(stylesheetIndex, params = {}) {
   return source =>
     new Promise((resolve, reject) => {
       SaxonJS.transform(
         {
           stylesheetLocation: window.stylesheets[stylesheetIndex],
-          sourceLocation: source
+          sourceLocation: source,
+          stylesheetParams: params
         },
         result => {
           if (result) {
@@ -70,15 +70,21 @@ function docFragmentToObjectURL(fragment) {
   return URL.createObjectURL(blob);
 }
 
+function getXmlId(name) {
+  const n = name.substring(0, name.indexOf("tps"));
+  return `${window.prepend}${n}`.toLowerCase();
+}
+
 function transformSource(source) {
   return new Promise((resolve, reject) => {
     window.handler.send_message(
       "Starting transformation on " + source.name,
       MSG_INFO
     );
+    const xmlId = getXmlId(source.name);
     const docxToTEI = prepareTransformation(0);
-    const generateHeader = prepareTransformation(1);
-    const addPageBreaks = prepareTransformation(2);
+    const generateHeader = prepareTransformation(1, { xmlId });
+    const addPageBreaks = prepareTransformation(2, { xmlId });
     docxToTEI(source.file)
       .then(result => generateHeader(docFragmentToObjectURL(result)))
       .then(result => addPageBreaks(docFragmentToObjectURL(result)))
@@ -100,11 +106,12 @@ function doTransformation(source) {
   }
 }
 
-function prepareSources(stylesheets, serializedPaths) {
+function prepareSources(stylesheets, serializedPaths, options = {}) {
   window.sourcesCount = serializedPaths.length;
   window.completedSources = 0;
   window.sources = serializedPaths;
   window.stylesheets = stylesheets;
+  window.prepend = options.prepend || "";
   doTransformation(window.sources[0]);
 }
 
