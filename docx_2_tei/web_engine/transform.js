@@ -71,7 +71,10 @@ function docFragmentToObjectURL(fragment) {
 }
 
 function getXmlId(name) {
-  const n = name.substring(0, name.indexOf("tps"));
+  let n = name;
+  if (name.includes("tps")) {
+    n = name.substring(0, name.indexOf("tps"));
+  }
   return `${window.prepend}${n}`.toLowerCase();
 }
 
